@@ -8,9 +8,8 @@ $id=$_GET[id];
 $author=$_SESSION[user];
 $imagepost="SELECT FPath FROM Posts WHERE Id=$id;";
 $imagepost=sql_query($imagepost);
-$imagepost=mysql_fetch_row($imagepost)[0];
-unlink(getcwd().$imagepost);
-
+$imagepost=mysql_fetch_row($imagepost);
+unlink(getcwd().$imagepost[0]);
 if(isArticle($id)){
     $tracce="SELECT Traccia FROM Audio WHERE IdArticolo=$id";
     $tracce=sql_query($tracce);
@@ -25,9 +24,7 @@ if(isArticle($id)){
     }
     
 }
-
 $query="DELETE FROM Posts WHERE Id=$id AND Autore='$author';";
 sql_query($query);
-
 header("Location: $path/profile.php");
 ?>

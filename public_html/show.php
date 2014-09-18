@@ -14,12 +14,12 @@ print usrnav();
 print nav($type);
 print "<div>";
 for($i=(4* ($page-1)); $i<(4*$page) && $i<count($posts); $i++) {
-    print "<div>
+    print "<div><hr>
     <h2><a href='$path/post.php?id=".$posts[$i][Id]."'>".$posts[$i][Titolo]."</a></h2>
     <span>di ".$posts[$i][NomeAutore]." ".$posts[$i][CognomeAutore]." ".$posts[$i][Data]."</span>
     <div><img width='20%' src='$path".$posts[$i][FotoPath]."' alt='".$posts[$i][FotoAlt]."'/></div>
     <p>".$posts[$i][Descrizione]."</p> 
-    <a href='$path/post.php?id=".$posts[$i][Id]."'>continua...</a><ul>";
+    <a href='$path/post.php?id=".$posts[$i][Id]."'>continua...</a><ul>Cerca posts simili taggati con:";
     for($e=0; $e<count($posts[$i][Tags]); $e++)
 	print "<li><a href='$path/search.php?tag=".$posts[$i][Tags][$e]."'>".$posts[$i][Tags][$e]."</a></li>";
     print "</ul></div>";

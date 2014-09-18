@@ -19,16 +19,6 @@ if(isset($_SESSION['surname'])){
 	$surname=$_SESSION['surname'];
 }
 
-$birth='';
-if(isset($_SESSION['birth'])){
-	$username=$_SESSION['birth'];
-}
-
-$birthplace='';
-if(isset($_SESSION['birthplace'])){
-	$username=$_SESSION['birthplace'];
-}
-
 $msg1="";
 if(isset($_GET['msg1'])){
 	$msg1 = "<span>".$_GET['msg1']."</span>";
@@ -52,16 +42,6 @@ if(isset($_GET['msg4'])){
 $msg5="";
 if(isset($_GET['msg5'])){
 	$msg5 = "<span>".$_GET['msg5']."</span>";
-}
-
-$msg6="";
-if(isset($_GET['msg6'])){
-	$msg6 = "<span>".$_GET['msg6']."</span>";
-}
-
-$msg7="";
-if(isset($_GET['msg7'])){
-	$msg7 = "<span>".$_GET['msg7']."</span>";
 }
 
 print "
@@ -95,18 +75,6 @@ print "
            <label for='surname'>Cognome: </label>
            <input type='text' name='surname' value='$surname' />
 		$msg5
-	</p>
-
-	<p>
-           <label for='birth'>Nato il: </label>
-           <input type='text' name='birth' value='$birth' />
-		$msg6
-	</p>
-
-	<p>
-           <label for='birthplace'>Nato dove: </label>
-           <input type='text' name='birthplace' value='$birthplace' />
-		$msg7
 	</p>
 
 	<p>

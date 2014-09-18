@@ -6,6 +6,8 @@ $path=getPath();
 if(isLogged()){
 	header("location: home.php");
 }
+$msg='';
+if(isset($_GET[err])){ $msg=$_GET[err]; }
 print "
 
     <h1>Pagina di Login</h1>
@@ -15,6 +17,7 @@ print "
         		<div><input type='text' name='username' id='username'/></div>
         		<label for='password'>Password:</label>
         		<div><input type='password' name='password' id='password'/></div>
+			<p>$msg</p>
         		<input type='submit' value='Accedi' />
         	</fieldset>
 	</form>

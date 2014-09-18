@@ -72,72 +72,14 @@ if( !isset($_POST['surname'])  || $_POST['surname']===''){
 	}
 }
 
-$iscr=date('Y-m-d',time());
-
-$SESSION['birth']=$_POST['birth'];
-$msg6="";
-$birth;
-if( !isset($_POST['birth'])  || $_POST['birth']===''){
-	$msg6="Inserire la data di nascita";
-	$error=true;
-}else{
-	if(preg_match("/^(0[1-9]|[1-2][0-9]|3[0-1])-0[1-9]|1[0-2]-[0-9]{4}$/",$_POST['birth'])){
-		$day = substr($_POST['birth'], 0, 2);
-		$month = substr($_POST['birth'], 3, 2);
-		$year = substr($_POST['birth'], 6, 4);
-		
-		$yearn=substr($iscr,0,4);
-		$monthn=substr($iscr,5,2);
-		$dayn=substr($iscr,8,2);
-		
-		if($year>$yearn && $month>$monthn && $day>$dayn){
-			$msg6="Sei nato nel futuro?";
-			$error=true;
-		}else{
-			$birth=$year.'-'.$month.'-'.$day;
-		}
-	}else{
-		$error=true;
-		$msg6="Formato Data non valida (es. GG-MM-AAAA --> 29-12-1987)";
-	}
-}
-
-
-$SESSION['birthplace']=$_POST['birthplace'];
-$mag7="";
-$birthplace;
-if( !isset($_POST['birthplace'])  || $_POST['birthplace']===''){
-	$msg7="Inserire la data di nascita";
-	$error=true;
-}else{
-	//if(preg_match("",$_POST['birthplace'])){
-		$birthplace=$_POST['birthplace'];
-	//}else{
-	//	$error=true;
-	//	$msg5="Formato Data non valida (es. GG-MM-AAAA --> 29-12-1987)";
-	//}
-	
-}
-
-
-
 if($error==true){
-	$msg="msg1=$msg1&&msg2=$msg2&&msg3=$msg3&&msg4=$msg4&&msg5=$msg5&&msg6=$msg6&&msg7=$msg7";
+	$msg="msg1=$msg1&&msg2=$msg2&&msg3=$msg3&&msg4=$msg4&&msg5=$msg5";
 	header('Location: register.php?'.$msg);
-	//exec('php register.php');
 	exit(); 
 }else{
-	$query="INSERT INTO Account VALUES ('$username','$password','$name','$surname','$iscr','$birth','$birthplace');";
-	sql_query($query);
-
-	$query="INSERT INTO Utenti VALUES ('$username');";
+	$query="CALL creaUtente('$username','$password','$name','$surname');";
 	sql_query($query);
 	header('Location: home.php');
 }
-
-
 exit();
-
-
-
 ?>

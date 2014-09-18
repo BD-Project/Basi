@@ -15,7 +15,7 @@ $typejoin='';//frammento vicolo di tipo
 if($_POST[type]==='a')
     $typejoin='JOIN Articoli a ON a.IdArticolo=p.Id';
 elseif($_POST[type]==='r')
-    $typejoin='JOIN Recensioni r ON a.IdRecensione=p.Id';
+    $typejoin='JOIN Recensioni r ON r.IdRecensione=p.Id';
 elseif($_POST[type]==='e')
     $typejoin='JOIN Eventi e ON e.IdEvento=p.Id';
 
@@ -49,6 +49,7 @@ while($dtr=mysql_fetch_row($aux)){
 print head("Music Break");
 print top();
 print nav("");
+print "<br><br><br><h1>Ricerca</h1>";
 print "<form action='$path/search.php' method='post'>
     <select name='when'>
 	<option value='ever'>tutti gli anni</option>
@@ -65,11 +66,11 @@ print "<form action='$path/search.php' method='post'>
     <input type='text' name='kws'/>
     <input type='submit' name='ricerca'/>
     </form>";
-print "<div>";
+print "<div><br><br><br>";
 if(isset($posts)){
 
     for($i=0; $i<(4*$page) && $i<count($posts); $i++) {
-	print "<div>
+	print "<hr><div>
 	<h2><a href='$path/post.php?id=".$posts[$i][Id]."'>".$posts[$i][Titolo]."</a></h2>
 	<span>di ".$posts[$i][NomeAutore]." ".$posts[$i][CognomeAutore]." ".$posts[$i][Data]."</span>
 	<div><img src='$path".$posts[$i][FotoPath]."' alt='".$posts[$i][FotoAlt]."'/></div>
@@ -79,6 +80,7 @@ if(isset($posts)){
 	    print "<li><a href='$path/search.php?tag=".$posts[$i][Tags][$e]."'>".$posts[$i][Tags][$e]."</a></li>";
 	print "</ul></div>";
     }
+    print "<p>Nav Pagine</p>";
     if(count($posts)>4){
 	if($page!=1){
 	    print "<a href='$path/show.php?type=$type&page=1'><<</a>";

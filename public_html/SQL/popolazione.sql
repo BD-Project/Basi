@@ -1,20 +1,3 @@
-DELETE FROM Tags;
-DELETE FROM Tag;
-DELETE FROM Eventi;
-DELETE FROM Gallerie;
-DELETE FROM Recensioni;
-DELETE FROM Audio;
-DELETE FROM Articoli;
-DELETE FROM Commenti;
-DELETE FROM Valutazioni;
-DELETE FROM Posts;
-DELETE FROM Editori;
-DELETE FROM Utenti;
-DELETE FROM Account;
-
-
-/*POPOLAZIONE*/
-
 CALL creaUtente("teciocross","progetto","Marco","Trattore");
 CALL creaUtente("cat_king","progetto","Davide","Cattaneo");
 CALL creaUtente("gazz90","progetto","Davide","Gazzoa");
@@ -25,7 +8,7 @@ CALL creaEditore("frigo.math","progetto","Matteo","Frezer");
 DROP TEMPORARY TABLE IF EXISTS tmp_tags;
 CREATE TEMPORARY TABLE tmp_tags (lbl VARCHAR(32) PRIMARY KEY);
 DROP TEMPORARY TABLE IF EXISTS tmp_tracks;
-CREATE TEMPORARY TABLE tmp_tracks (pth VARCHAR(255) PRIMARY KEY, alt TEXT);
+CREATE TEMPORARY TABLE tmp_tracks (pth VARCHAR(255) PRIMARY KEY, alta TEXT);
 DROP TEMPORARY TABLE IF EXISTS tmp_gallery;
 CREATE TEMPORARY TABLE tmp_gallery (fp varchar(255) PRIMARY KEY, fa varchar(255));
 

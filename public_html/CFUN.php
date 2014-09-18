@@ -1,8 +1,9 @@
 <?php
+ini_set( "display_errors", 0);
 //ini_set('display_errors', 1);
 //error_reporting(E_ALL ^ E_NOTICE);
-date_default_timezone_set('Europe/Rome');
-$path="";//"/basidati/~aandelie";
+//date_default_timezone_set('Europe/Rome');
+$path="/basidati/~aandelie";
 session_start();
 
 function getPath(){
@@ -52,7 +53,7 @@ function isEvent($id){
 }
 
 function getMediaPost($id){
-    $query="SELECT sum(Voto)/count(*) FROM Posts p JOIN Valutazioni v ON p.Id=v.IdPost WHERE p.Id=$id GROUP BY p.Id;";
+    $query="SELECT mediaValPost($id);";
     $aux=sql_query($query);
     $val=mysql_fetch_row($aux);
     return $val[0];
@@ -290,7 +291,7 @@ function inserisciArticolo($titolo,$fotosrc,$fotoalt,$descrizione,$testo,$tags,$
     $pwd = fread($fh, 8);
     $conn=mysql_connect($host,$user,$pwd)
         or die($_SERVER['PHP_SELF']."Connessione fallita!");
-    $dbname="aandeliePR";
+    $dbname="aandelie-PR";
     mysql_select_db($dbname);
     $query="CREATE TEMPORARY TABLE tmp_tags (lbl VARCHAR(32) PRIMARY KEY);";
     mysql_query($query,$conn) or die("Query fallita".mysql_error($conn));
@@ -318,7 +319,7 @@ function inserisciRecensione($titolo,$fotosrc,$fotoalt,$descrizione,$testo,$tags
     $pwd = fread($fh, 8);
     $conn=mysql_connect($host,$user,$pwd)
         or die($_SERVER['PHP_SELF']."Connessione fallita!");
-    $dbname="aandeliePR";
+    $dbname="aandelie-PR";
     mysql_select_db($dbname);
     $query="CREATE TEMPORARY TABLE tmp_gallery (fp varchar(255) PRIMARY KEY, fa varchar(255));";
     mysql_query($query,$conn) or die("Query fallita".mysql_error($conn));
@@ -346,7 +347,7 @@ function inserisciEvento($titolo,$fotosrc,$fotoalt,$descrizione,$testo,$tags,$da
     $pwd = fread($fh, 8);
     $conn=mysql_connect($host,$user,$pwd)
         or die($_SERVER['PHP_SELF']."Connessione fallita!");
-    $dbname="aandeliePR";
+    $dbname="aandelie-PR";
     mysql_select_db($dbname);
     $query="CREATE TEMPORARY TABLE tmp_tags (lbl VARCHAR(32) PRIMARY KEY);";
     mysql_query($query,$conn) or die("Query fallita".mysql_error($conn));
@@ -360,8 +361,9 @@ function inserisciEvento($titolo,$fotosrc,$fotoalt,$descrizione,$testo,$tags,$da
     mysqli_close($conn);
 }
 
-function inserisciCommento(){
-    
+function inserisciCommento($idPost,$testo,$utente){
+    $query="CALL inserisciCommento('$utente',$idPost,'$testo');";
+    sql_query($query);  
 }
 
 function heVoted($id,$user){
@@ -454,7 +456,7 @@ function sql_query($query) {
     $pwd = fread($fh, 8);
     $conn=mysql_connect($host,$user,$pwd)
         or die($_SERVER['PHP_SELF']."Connessione fallita!");
-    $dbname="aandeliePR";
+    $dbname="aandelie-PR";
     mysql_select_db($dbname);
     $ritorno=mysql_query($query,$conn)
         or die("Query fallita".mysql_error($conn));

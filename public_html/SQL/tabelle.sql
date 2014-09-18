@@ -1,17 +1,3 @@
-DROP TABLE IF EXISTS Tags;
-DROP TABLE IF EXISTS Tag;
-DROP TABLE IF EXISTS Eventi;
-DROP TABLE IF EXISTS Gallerie;
-DROP TABLE IF EXISTS Recensioni;
-DROP TABLE IF EXISTS Audio;
-DROP TABLE IF EXISTS Articoli;
-DROP TABLE IF EXISTS Commenti;
-DROP TABLE IF EXISTS Valutazioni;
-DROP TABLE IF EXISTS Posts;
-DROP TABLE IF EXISTS Editori;
-DROP TABLE IF EXISTS Utenti;
-DROP TABLE IF EXISTS Account;
-
 CREATE TABLE Account(
 		User		VARCHAR(32),
 		Password	CHAR(32),/*utilizzo 32 caratteri perchè utilizzo MD5*/
@@ -138,4 +124,4 @@ CREATE TABLE Error(
 		Info   TEXT, 
 	PRIMARY KEY(Cod)
 ) ENGINE = InnoDB;
-INSERT INTO Error VALUES(1, "Errore generico");
+INSERT INTO Error VALUES(1, "Errore generico"),(2,"Valutazione fuori range");

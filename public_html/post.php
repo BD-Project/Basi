@@ -11,7 +11,7 @@ print head("Music Break");
 print top();
 print usrnav();
 print nav("");
-print "<div>
+print "<br><br><br><div>
 	<h1>$post[Titolo]</h1>
 	<h2> Scritto da $post[NomeAutore] $post[NomeAutore] il $post[Data]</h2>";
 if(isset($mediaArticolo))	echo "<h3>Valutazione degli utenti: $mediaArticolo/10</h3>";
@@ -39,7 +39,7 @@ if(isLogged()){
   }
 }else	print "<h3><a href='login.php'>loggati per valutare</a></h3>";
 
-echo "<ul>";
+echo "<ul>Ricerca post con Tags simili a:";
 for($i=0; $i<count($post["Tags"]); $i++)
 	print "<li><a href='$path/search.php?idtag=".$post[Tags][$i]." '>".$post[Tags][$i]." </a></li>";
 echo "</ul>
